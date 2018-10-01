@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+
                 //Toast.makeText(MainActivity.this,textoSaludo.getText().toString(),
                 //  Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MainActivity.this, saludoActivity.class);
-
                 intent.putExtra("CAJA",textoSaludo.getText().toString());
                 startActivity(intent);
             }

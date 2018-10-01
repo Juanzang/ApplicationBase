@@ -6,11 +6,13 @@ import android.os.FileObserver;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class saludoActivity extends AppCompatActivity {
 
     private TextView nuevoTx;
+    private Button btnSaludo2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,20 +23,21 @@ public class saludoActivity extends AppCompatActivity {
 
     private void init(){
         nuevoTx = (TextView)findViewById(R.id.texto_mensaje);
-        Bundle extras = getIntent().getExtras();
-        if(extras!=null) {
-            String valor = (String) extras.get("CAJA");
-            nuevoTx.setText(valor);
-        }
+        btnSaludo2 = (Button) findViewById(R.id.btnSiguiente);
+        btnSaludo2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(MainActivity.this,textoSaludo.getText().toString(),
-                //  Toast.LENGTH_LONG).show();
+                Bundle extras = getIntent().getExtras();
+                if(extras!=null) {
+                    String valor = (String) extras.get("CAJA");
+                    nuevoTx.setText(valor);
+                }
                 Intent intent = new Intent(saludoActivity.this, CamaraActivity.class);
+                intent.putExtra("CAJA2",nuevoTx.getText().toString());
                 startActivity(intent);
-
+            }
+        });
         }
-    }
-
-
 }
+
+
